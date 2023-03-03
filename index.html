@@ -1,8 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="body">
+  <div class="score-display" id="playerOne">
+    <p id="tokenOne">PLAYERONE</p>
+    <p id="scoreOne">PLAYERONESCORE</p>
+  </div>
+  <div class="game-display">
+    <h1 id="turnDisplay">ITS PLAYER 1 TURN</h1>
+    <div class="game-board">
+      <box id="squareOne"></box>
+      <box id="squareTwo"></box>
+      <box id="squareThree"></box>
+      <box id="squareFour"></box>
+      <box id="squareFive"></box>
+      <box id="squareSix"></box>
+      <box id="squareSeven"></box>
+      <box id="squareEight"></box>
+      <box id="squareNine"></box>
+    </div>
+  </div>
+  <div class="score-display" id="playerTwp">
+    <p id="tokenTwo">PLAYERTWO</p>
+    <p id="scoreTwo">PLAYERTWOSCORE</p>
+  </div>
 </body>
 <script src="game.js"></script> 
 <script src="player.js"></script> 
