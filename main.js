@@ -1,5 +1,11 @@
-var playerOne = new Player(1)
-var playerTwo = new Player(2)
+//QUERYSELECTORS//
+//EVENTLISTENERS//
+
+
+
+
+var playerOne = new Player(1, "X")
+var playerTwo = new Player(2, "O")
 var newGame = new Game()
 
 function playerTurn(input, player) {
