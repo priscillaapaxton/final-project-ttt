@@ -17,12 +17,10 @@ class Game {
       this.playerTwoTurn = true 
       this.playerOneTurn = false
       console.log('player 2 turn')
-      //add functionality to change dom display
     } else if (this.playerTwoTurn) {
       this.playerOneTurn = true
       this.playerTwoTurn = false
       console.log('player 1 turn')
-      //add unctionality to change dom display
     }
   }
   resetBoard() {
@@ -35,6 +33,9 @@ class Game {
     this.squareSeven = undefined
     this.squareEight = undefined
     this.squareNine = undefined
+    //how do I make my conditionals check for a specific string?
+    //could I make them check to see if they all have the same value?
+    //would it be easier to check if each player's arrays contained numbers?
   }
   checkWinStatus(player) {
     if (this.squareOne === player && this.squareTwo === player && this.squareThree === player) {
