@@ -15,6 +15,7 @@ var squareSix = document.querySelector('#squareSix')
 var squareSeven = document.querySelector('#squareSeven')
 var squareEight = document.querySelector('#squareEight')
 var squareNine = document.querySelector('#squareNine')
+var entireBoard = document.querySelector('#gameBoard')
 
 //DATAMODEL//
 var newGame = new Game()
@@ -34,9 +35,6 @@ squareEight.addEventListener('click', playerTurn)
 squareNine.addEventListener('click', playerTurn)
 
 //FUNCTOINS//
-function changeToken() {
-gameBoard.html 
-}
 
 function changeTurn() {
   if (turnDisplay.innerText === `ITS PLAYER 1 TURN`) {
@@ -46,18 +44,65 @@ function changeTurn() {
     turnDisplay.innerText = 'ITS PLAYER 1 TURN'
     currentPlayer = 'playerOne'
   }
-  }
+}
 
-function playerTurn(event) {
-  if (newGame[event.target.id] === undefined) {
-    console.log(`${event.target.id} was clicked`)
-    newGame[event.target.id] = currentPlayer 
-    newGame.checkWinStatus(currentPlayer)
-    changeTurn()
-    newGame.switchTurn()
-    newGame.gameScoreCheck(playerOne, playerTwo)
+function boardReset() {
+  if (turnDisplay.innerText === `${currentPlayer} wins!`) {
+    (turnDisplay.innerText === `ITS PLAYER 1 TURN`)
+    currentPlayer = 'playerOne'
+}
+}
+
+function displayScore() {
+  if (newGame.playerOne.wins < 4) {
+    playerOneScore.innerText = `WINS: ${newGame.playerOne.wins}`
+  } else if (newGame.playerTwo.wins < 4) {
+    playerTwoScore.innerText = `WINS: ${newGame.playerTwo.wins}`
+}
+}
+
+function displayWin() {
+  if (newGame[currentPlayer].wins === 1) {
+    displayScore()
+    // setTimeout(() => boardReset(), 2000)
+    setTimeout(boardReset,3000)
+    turnDisplay.innerText = `${currentPlayer} wins!`
+    entireBoard.innerHTML = `
+    <box id="squareOne"></box>
+    <box id="squareTwo"></box>
+    <box id="squareThree"></box>
+    <box id="squareFour"></box>
+    <box id="squareFive"></box>
+    <box id="squareSix"></box>
+    <box id="squareSeven"></box>
+    <box id="squareEight"></box>
+    <box id="squareNine"></box>
+    `
   }
 }
+
+function playerTurn(event) {
+  event.target.innerText = newGame[currentPlayer].token
+  newGame.updateBoard(event)
+  displayWin()
+  changeTurn()
+}
+// function playerTurn(event) {
+//   if (newGame[event.target.id] === undefined) {
+//     console.log(`${event.target.id} was clicked`)
+//     newGame[event.target.id] = currentPlayer 
+//     newGame.checkWinStatus(currentPlayer)
+//     newGame.switchTurn()
+//     newGame.gameScoreCheck(playerOne, playerTwo)
+//   }
+// }
+// updateBoard(event) {
+//   if (event.target.innerText === currentPlayer.token) {
+//     this[event.target.id] = currentPlayer
+//     console.log(`${event.target.id} was clicked`)
+//     this.switchTurn()
+//   }
+// }
 
 
 //if the turn variable = player1, then the html will look like this with player1 token
@@ -68,5 +113,3 @@ function playerTurn(event) {
 //playerOne.wins +=
 //}
 //if DOM displays
-
-
