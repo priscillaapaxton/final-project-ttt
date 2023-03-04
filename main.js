@@ -17,10 +17,10 @@ var squareEight = document.querySelector('#squareEight')
 var squareNine = document.querySelector('#squareNine')
 
 //DATAMODEL//
-var playerOne = new Player(1, "X")
-var playerTwo = new Player(2, "O")
 var newGame = new Game()
-var currentPlayer = "playerOne"
+var playerOne = newGame.playerOne
+var playerTwo = newGame.playerTwo
+var currentPlayer = 'playerOne'
 
 //EVENTLISTENERS//
 squareOne.addEventListener('click', playerTurn)
@@ -34,26 +34,39 @@ squareEight.addEventListener('click', playerTurn)
 squareNine.addEventListener('click', playerTurn)
 
 //FUNCTOINS//
+function changeToken() {
+gameBoard.html 
+}
+
 function changeTurn() {
-  if (turnDisplay.innerText === 'ITS PLAYER 1 TURN') {
+  if (turnDisplay.innerText === `ITS PLAYER 1 TURN`) {
     turnDisplay.innerText = 'ITS PLAYER 2 TURN'
-    var currentPlayer = "playerTwo"
+    currentPlayer = 'playerTwo'
   } else if (turnDisplay.innerText === 'ITS PLAYER 2 TURN') {
     turnDisplay.innerText = 'ITS PLAYER 1 TURN'
-    var currentPlayer = "playerOne"
+    currentPlayer = 'playerOne'
   }
   }
-
 
 function playerTurn(event) {
   if (newGame[event.target.id] === undefined) {
     console.log(`${event.target.id} was clicked`)
     newGame[event.target.id] = currentPlayer 
+    newGame.checkWinStatus(currentPlayer)
     changeTurn()
     newGame.switchTurn()
-    newGame.checkWinStatus(playerOne, playerTwo)
     newGame.gameScoreCheck(playerOne, playerTwo)
   }
 }
+
+
+//if the turn variable = player1, then the html will look like this with player1 token
+//if the turn = player 1, then add this value to the property
+
+//if it were an array: if the turn = player1, push this number into newGame.player1
+//if this.playerOne.includes(1, 2, 3) {
+//playerOne.wins +=
+//}
+//if DOM displays
 
 
