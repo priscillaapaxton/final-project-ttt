@@ -37,79 +37,92 @@ squareNine.addEventListener('click', playerTurn)
 //FUNCTOINS//
 
 function changeTurn() {
-  if (turnDisplay.innerText === `ITS PLAYER 1 TURN`) {
-    turnDisplay.innerText = 'ITS PLAYER 2 TURN'
+  if (turnDisplay.innerText === `ITS playerOne TURN`) {
+    turnDisplay.innerText = `ITS playerTwo TURN`
     currentPlayer = 'playerTwo'
-  } else if (turnDisplay.innerText === 'ITS PLAYER 2 TURN') {
-    turnDisplay.innerText = 'ITS PLAYER 1 TURN'
+  } else if (turnDisplay.innerText === 'ITS playerTwo TURN') {
+    turnDisplay.innerText = 'ITS playerOne TURN'
     currentPlayer = 'playerOne'
+  } 
+}
+
+function newBoard() {
+  if (newGame.currentWin === 'playerOne') {  
+    currentPlayer = 'playerTwo'
+  } else if (newGame.currentWin === 'playerTwo') {
+    currentPlayer = 'playerOne'
+  }
+  newGame.resetBoard()
+  console.log('game reset')
+  // entireBoard.innerHTML = `
+  // <box id="squareOne"></box>
+  // <box id="squareTwo"></box>
+  // <box id="squareThree"></box>
+  // <box id="squareFour"></box>
+  // <box id="squareFive"></box>
+  // <box id="squareSix"></box>
+  // <box id="squareSeven"></box>
+  // <box id="squareEight"></box>
+  // <box id="squareNine"></box>
+  // `
+  squareOne.innerText = ''
+  squareTwo.innerText = ''
+  squareThree.innerText = ''
+  squareFour.innerText = ''
+  squareFive.innerText = ''
+  squareSix.innerText = ''
+  squareSeven.innerText = ''
+  squareEight.innerText = ''
+  squareNine.innerText = ''
+  turnDisplay.innerText = `ITS ${currentPlayer} TURN`
+}
+
+function displayWinner() {
+  if (newGame.currentWin){
+  turnDisplay.innerText = `${newGame.currentWin} wins!`
+  setTimeout(newBoard,1000)
+  // newGame.resetBoard()
+}
+}
+
+function checkDraw() {
+  if (newGame.draw === true) {
+    turnDisplay.innerText = `IT'S A DRAW! SORRY!`
+    setTimeout(newBoard,1000)
   }
 }
 
-function boardReset() {
-  if (turnDisplay.innerText === `${currentPlayer} wins!`) {
-    (turnDisplay.innerText === `ITS PLAYER 1 TURN`)
-    currentPlayer = 'playerOne'
-}
-}
-
 function displayScore() {
-  if (newGame.playerOne.wins < 4) {
+  if (newGame.playerOne.wins > 0) {
     playerOneScore.innerText = `WINS: ${newGame.playerOne.wins}`
-  } else if (newGame.playerTwo.wins < 4) {
+    endGame()
+  }if (newGame.playerTwo.wins > 0) {
     playerTwoScore.innerText = `WINS: ${newGame.playerTwo.wins}`
-}
+    endGame()
+  }
 }
 
 function displayWin() {
-  if (newGame[currentPlayer].wins === 1) {
+  if (newGame.currentWin === 'playerOne') {
     displayScore()
-    // setTimeout(() => boardReset(), 2000)
-    setTimeout(boardReset,3000)
-    turnDisplay.innerText = `${currentPlayer} wins!`
-    entireBoard.innerHTML = `
-    <box id="squareOne"></box>
-    <box id="squareTwo"></box>
-    <box id="squareThree"></box>
-    <box id="squareFour"></box>
-    <box id="squareFive"></box>
-    <box id="squareSix"></box>
-    <box id="squareSeven"></box>
-    <box id="squareEight"></box>
-    <box id="squareNine"></box>
-    `
+    displayWinner()
+  } else if (newGame.currentWin === 'playerTwo') {
+    displayScore()
+    displayWinner()
+  }
+}
+
+function endGame() {
+  if (newGame.playerOne.wins === 3 || newGame.playerTwo.wins === 3) {
+    turnDisplay.innerText = 'GAME OVER'
+    setTimeout(newBoard,3000)
   }
 }
 
 function playerTurn(event) {
+  console.log('click')
   event.target.innerText = newGame[currentPlayer].token
   newGame.updateBoard(event)
   displayWin()
   changeTurn()
 }
-// function playerTurn(event) {
-//   if (newGame[event.target.id] === undefined) {
-//     console.log(`${event.target.id} was clicked`)
-//     newGame[event.target.id] = currentPlayer 
-//     newGame.checkWinStatus(currentPlayer)
-//     newGame.switchTurn()
-//     newGame.gameScoreCheck(playerOne, playerTwo)
-//   }
-// }
-// updateBoard(event) {
-//   if (event.target.innerText === currentPlayer.token) {
-//     this[event.target.id] = currentPlayer
-//     console.log(`${event.target.id} was clicked`)
-//     this.switchTurn()
-//   }
-// }
-
-
-//if the turn variable = player1, then the html will look like this with player1 token
-//if the turn = player 1, then add this value to the property
-
-//if it were an array: if the turn = player1, push this number into newGame.player1
-//if this.playerOne.includes(1, 2, 3) {
-//playerOne.wins +=
-//}
-//if DOM displays
