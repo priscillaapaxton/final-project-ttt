@@ -1,5 +1,6 @@
 class Game {
   constructor() {
+    this.currentRound = 1
     this.playerOneTurn = true
     this.playerTwoTurn = false
     this.playerOne = new Player(1, "x")
@@ -35,35 +36,45 @@ class Game {
     this.squareEight = undefined
     this.squareNine = undefined
     this.currentWin = undefined
+    this.currentWin = undefined
+    this.draw = false
     console.log('new win set to undefined')
   }
  checkWinStatus(currentPlayer) {
   if (this.squareOne === currentPlayer && this.squareTwo === currentPlayer && this.squareThree === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
     console.log(`${currentPlayer} won`)
   } else if (this.squareFour === currentPlayer && this.squareFive === currentPlayer && this.squareSix === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareSeven === currentPlayer && this.squareEight === currentPlayer && this.squareNine === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareOne === currentPlayer && this.squareFour === currentPlayer && this.squareSeven === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareTwo === currentPlayer && this.squareFive === currentPlayer && this.squareEight === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareThree === currentPlayer && this.squareSix === currentPlayer && this.squareNine === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareOne === currentPlayer && this.squareFive === currentPlayer && this.squareNine === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
+    this.currentRound += 1
   } else if (this.squareThree === currentPlayer && this.squareFive === currentPlayer && this.squareSeven === currentPlayer) {
     this.currentWin = currentPlayer
     this[currentPlayer].wins += 1
-  } else if (this.squareOne === 'playerOne' || 'playertwo' && this.squareTwo === 'playerOne' || 'playertwo' && this.squareThree === 'playerOne' || 'playertwo' && this.squareFour === 'playerOne' || 'playertwo' && this.squareFive === 'playerOne' || 'playertwo' && this.squareSix === 'playerOne' || 'playertwo' && this.squareSeven === 'playerOne' || 'playertwo' && this.squareEight === 'playerOne' || 'playertwo' && this.squareNine === 'playerOne' || 'playertwo') {
+    this.currentRound += 1
+  } else if (this.squareOne && this.squareTwo && this.squareThree && this.squareFour && this.squareFive && this.squareSix && this.squareSeven && this.squareEight && this.squareNine) {
     this.draw = true
   }
 }

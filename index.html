@@ -4,27 +4,29 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="body">
-  <div class="score-display" id="playerOne">
-    <p id="tokenOne">PLAYER ONE</p>
-    <p id="scoreOne"></p>
-  </div>
-  <div class="game-display">
-    <h1 id="turnDisplay">ITS playerOne TURN</h1>
-    <div class="game-board" id="gameBoard">
-      <box id="squareOne"></box>
-      <box id="squareTwo"></box>
-      <box id="squareThree"></box>
-      <box id="squareFour"></box>
-      <box id="squareFive"></box>
-      <box id="squareSix"></box>
-      <box id="squareSeven"></box>
-      <box id="squareEight"></box>
-      <box id="squareNine"></box>
+  <div class="game-info-display">
+    <div class="score-display" id="playerOne">
+      <p class="player-one-turn-true player-one-turn-false" id="tokenOne">PLAYER ONE TURN</p>
+      <p id="scoreOne"></p>
+    </div>
+    <h1 id="roundDisplay">Round 1</h1>
+    <div class="score-display" id="playerTwp">
+      <p id="tokenTwo">PLAYER TWO TURN</p>
+      <p id="scoreTwo"></p>
     </div>
   </div>
-  <div class="score-display" id="playerTwp">
-    <p id="tokenTwo">PLAYER TWO</p>
-    <p id="scoreTwo"></p>
+  <div class="game-display">
+    <div class="game-board" id="gameBoard">
+      <box class="square-one" id="squareOne"></box>
+      <box class="square-two" id="squareTwo"></box>
+      <box class="square-three" id="squareThree"></box>
+      <box class="square-four" id="squareFour"></box>
+      <box class="square-five" id="squareFive"></box>
+      <box class="square-six" id="squareSix"></box>
+      <box class="square-seven" id="squareSeven"></box>
+      <box class="square-eight" id="squareEight"></box>
+      <box class="square-nine" id="squareNine"></box>
+    </div>
   </div>
 </body>
 <script src="game.js"></script> 

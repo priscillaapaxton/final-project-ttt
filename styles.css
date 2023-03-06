@@ -8,9 +8,18 @@ html {
 
 body {
   height: 100%;
+  background: url('Screen Shot 2023-03-05 at 5.24.56 PM.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.game-info-display {
   display: flex;
   justify-content: space-around;
-  margin: 0;
+  width: 100%
 }
 
 .score-display {
@@ -36,13 +45,109 @@ body {
   grid-row-gap: 0px;
   width: 500px;
   height: 500px;
+}
 
+.player-one-turn-true {
+  font-family: monospace;
+  font-size: 30px;
+  color: #e6ffe6;
+    text-shadow:
+      0 0 7px #e6ffe6,
+      0 0 10px #e6ffe6,
+      0 0 21px #e6ffe6,
+      0 0 42px #00e600,
+      0 0 82px #00e600,
+      0 0 92px #00e600,
+      0 0 102px #00e600,
+      0 0 151px #00e600;
+}
+
+.player-one-turn-false {
+  font-family: monospace;
+  font-size: 30px;
+  color: #202f38
+}
+
+
+box {
+  /* border: solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  /* make corners softer*/
+}
+
+.square-one {
+  border-left: none;
+  border-top: none;
+}
+
+.square-two {
+  border-top: none;
+}
+
+.square-three {
+  border-top: none;
+  border-right: none;
+}
+
+.square-four {
+  border-left: none;
+}
+
+.square-six {
+  border-right: none;
+}
+
+.square-seven {
+  border-left: none;
+  border-bottom: none;
+}
+
+.square-eight {
+  border-bottom: none;
+}
+
+.square-nine {
+  border-right: none;
+  border-bottom: none;
 }
 
 box {
-  border: solid red
+  border: solid #ffccff;
+  transition: all 1000ms;
 }
 
 .hidden {
   display: none!important;
+}
+
+.active-color1 {
+  background-color: #ccb3ff;
+}
+
+.active-color2 {
+  background-color: #99ff66;
+}
+.active-color3 {
+  background-color: #ff3399;
+}
+.active-color4 {
+  background-color: #ffffcc
+}
+.active-color5 {
+  background-color: #e60000
+}
+.active-color6 {
+  background-color: #4c0080
+}
+.active-color7 {
+  background-color: #00004d
+}
+.active-color8 {
+  background-color: #ffff99
+}
+.active-color9 {
+  background-color: #53ff1a;
 }
