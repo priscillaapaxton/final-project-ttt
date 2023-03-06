@@ -4,7 +4,7 @@ var playerTwoToken = document.querySelector('#tokenTwo')
 var playerOneScore = document.querySelector('#scoreOne')
 var playerTwoScore = document.querySelector('#scoreTwo')
 
-var turnDisplay = document.querySelector('#roundDisplay')
+var roundDisplay = document.querySelector('#roundDisplay')
 
 var squareOne = document.querySelector('#squareOne')
 var squareTwo = document.querySelector('#squareTwo')
@@ -36,50 +36,48 @@ squareNine.addEventListener('click', playerTurn)
 
 //FUNCTOINS//
 
-// function changeTurn() {
-//   if (turnDisplay.innerText === `ITS playerOne TURN`) {
-//     turnDisplay.innerText = `ITS playerTwo TURN`
-//     currentPlayer = 'playerTwo'
-//   } else if (turnDisplay.innerText === 'ITS playerTwo TURN') {
-//     turnDisplay.innerText = 'ITS playerOne TURN'
-//     currentPlayer = 'playerOne'
-//   } 
-// }
-
 function changeTurn() {
   if (newGame.playerTwoTurn === true) {
     currentPlayer = 'playerTwo'
-    playerTwoToken.classList.add('player-one-turn-true')
+    // playerTwoToken.classList.add('player-one-turn-true')
   } else if (newGame.playerOneTurn === true) {
     currentPlayer = 'playerOne'
-    playerTwoToken.classList.remove('player-one-turn-true')
-    playerTwoToken.classList.add('player-one-turn-false')
+    // playerTwoToken.classList.remove('player-one-turn-true')
+    // playerTwoToken.classList.add('player-one-turn-false')
   }
 }
 
-// function changeTurn() {
-//   if (newGame.playerOneTurn === true) {
-//     currentPlayer = 'playerTwo'
-//     playerOneToken.classList.add('player-one-turn-false')
-//     playerOneToken.classList.remove('player-one-turn-true')
-//     playerTwoToken.classList.add('player-one-turn-true')
-//   } else if (newGame.playerTwoTurn === true) {
-//     currentPlayer = 'playerOne'
-//     playerTwoToken.classList.add('player-one-turn-false')
-//     playerTwoToken.classList.remove('player-one-turn-true')
-//     playerOneToken.classList.add('player-one-turn-true')
+function displayRound() {
+  if (newGame.currentRound === 2) {
+    roundDisplay.innerHTML = `<img id="roundStatus" src="round2.png" alt="round 2"/>`
+  } else if (newGame.currentRound === 3) {
+    roundDisplay.innerHTML = `<img id="roundStatus" src="round3.png" alt="round 3"/>`
+  } else if (newGame.playerOne.wins === 3 || newGame.playerTwo.wins === 3) {
+    roundDisplay.innerHTML = `<img id="roundStatus" src="gameover.png" alt="game over"/>`
+    setTimeout(newBoard,3000)
+  }
+}
+
+// function endGame() {
+//   console.log('alert')
+//   if (newGame.playerOne.wins === 3) {
+//     turnDisplay.innerText = 'GAME OVER'
+//     setTimeout(newBoard,3000)
+//   } if (newGame.playerTwo.wins === 3) {
+//     turnDisplay.innerText = 'GAME OVER'
+//     setTimeout(newBoard,3000)
 //   }
 // }
 
 function newBoard() {
+  // endGame()
+  displayRound()
   if (newGame.currentWin === 'playerOne') {  
     currentPlayer = 'playerTwo'
   } else if (newGame.currentWin === 'playerTwo') {
     currentPlayer = 'playerOne'
   }
   newGame.resetBoard()
-  console.log('game reset')
-  
   squareOne.innerText = ''
   squareOne.className = ''
   squareOne.classList.add('square-one')
@@ -107,12 +105,15 @@ function newBoard() {
   squareNine.innerText = ''
   squareNine.className = ''
   squareNine.classList.add('square-nine')
-  turnDisplay.innerText = `Round ${newGame.currentRound}`
+  // turnDisplay.innerText = `Round ${newGame.currentRound}`
 }
 
 function displayWinner() {
-  if (newGame.currentWin){
-  turnDisplay.innerText = `${newGame.currentWin} wins!`
+  if (newGame.currentWin === 'playerOne'){
+    roundDisplay.innerHTML = `<img id="roundStatus" src="player1winss.png" alt="round 2"/>`
+  setTimeout(newBoard,1000)
+} else if (newGame.currentWin === 'playerTwo') {
+  roundDisplay.innerHTML = `<img id="roundStatus" src="player2winss.png" alt="round 2"/>`
   setTimeout(newBoard,1000)
 }
 }
@@ -127,10 +128,8 @@ function checkDraw() {
 function displayScore() {
   if (newGame.playerOne.wins > 0) {
     playerOneScore.innerText = `WINS: ${newGame.playerOne.wins}`
-    endGame()
   }if (newGame.playerTwo.wins > 0) {
     playerTwoScore.innerText = `WINS: ${newGame.playerTwo.wins}`
-    endGame()
   }
 }
 
@@ -144,40 +143,35 @@ function displayWin() {
   }
 }
 
-function endGame() {
-  if (newGame.playerOne.wins === 3 || newGame.playerTwo.wins === 3) {
-    turnDisplay.innerText = 'GAME OVER'
-    setTimeout(newBoard,3000)
-  }
-}
-
 function playerTurn(event) {
   if (!event.target.innerText) {
-    if (event.target.id === 'squareOne') {
-      event.target.classList.add('active-color1')
-    } if (event.target.id === 'squareTwo') {
-      event.target.classList.add('active-color2')
-    } if (event.target.id === 'squareThree') {
-      event.target.classList.add('active-color3')
-    } if (event.target.id === 'squareFour') {
-      event.target.classList.add('active-color4')
-    } if (event.target.id === 'squareFive') {
-      event.target.classList.add('active-color5')
-    }  if (event.target.id === 'squareSix') {
-      event.target.classList.add('active-color6')
-    } if (event.target.id === 'squareSeven') {
-      event.target.classList.add('active-color7')
-    } if (event.target.id === 'squareEight') {
-      event.target.classList.add('active-color8')
-    } if (event.target.id === 'squareNine') {
-      event.target.classList.add('active-color9')
-    }  
-  } 
+    if (!event.target.innerText) {
+      if (event.target.id === 'squareOne') {
+        event.target.classList.add('active-color13579')
+      } if (event.target.id === 'squareTwo') {
+        event.target.classList.add('active-color2468')
+      } if (event.target.id === 'squareThree') {
+        event.target.classList.add('active-color13579')
+      } if (event.target.id === 'squareFour') {
+        event.target.classList.add('active-color2468')
+      } if (event.target.id === 'squareFive') {
+        event.target.classList.add('active-color13579')
+      } if (event.target.id === 'squareSix') {
+        event.target.classList.add('active-color2468')
+      }if (event.target.id === 'squareSeven') {
+        event.target.classList.add('active-color13579')
+      } if (event.target.id === 'squareEight') {
+        event.target.classList.add('active-color2468')
+      } if (event.target.id === 'squareNine') {
+        event.target.classList.add('active-color13579')
+      }  
+    } 
   // squareChange()
   event.target.innerText = newGame[currentPlayer].token
   newGame.updateBoard(event)
   displayWin()
   changeTurn()
   checkDraw()
+}
 }
 

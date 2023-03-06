@@ -11,23 +11,24 @@ body {
   background: url('Screen Shot 2023-03-05 at 5.24.56 PM.png');
   background-size: cover;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   margin: 0;
 }
 
-.game-info-display {
+.game-display {
   display: flex;
   justify-content: space-around;
   width: 100%
 }
 
-.score-display {
+/* .score-display {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .game-display {
   display: flex;
@@ -43,8 +44,9 @@ body {
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  width: 500px;
-  height: 500px;
+  width: 375px;
+  height: 375px;
+  margin-bottom: 15%
 }
 
 .player-one-turn-true {
@@ -68,14 +70,14 @@ body {
   color: #202f38
 }
 
-
 box {
-  /* border: solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 40px;
   /* make corners softer*/
+  border: solid #47d1d1;
+  transition: all 750ms;
 }
 
 .square-one {
@@ -114,40 +116,14 @@ box {
   border-bottom: none;
 }
 
-box {
-  border: solid #ffccff;
-  transition: all 1000ms;
-}
-
 .hidden {
   display: none!important;
 }
 
-.active-color1 {
-  background-color: #ccb3ff;
+.active-color13579 {
+  background: rgb(255, 153, 0, .45)
 }
 
-.active-color2 {
-  background-color: #99ff66;
-}
-.active-color3 {
-  background-color: #ff3399;
-}
-.active-color4 {
-  background-color: #ffffcc
-}
-.active-color5 {
-  background-color: #e60000
-}
-.active-color6 {
-  background-color: #4c0080
-}
-.active-color7 {
-  background-color: #00004d
-}
-.active-color8 {
-  background-color: #ffff99
-}
-.active-color9 {
-  background-color: #53ff1a;
+.active-color2468 {
+  background: rgb(255, 254, 1, .5)
 }

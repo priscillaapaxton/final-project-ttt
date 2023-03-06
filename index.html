@@ -4,18 +4,14 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="body">
-  <div class="game-info-display">
-    <div class="score-display" id="playerOne">
-      <p class="player-one-turn-true player-one-turn-false" id="tokenOne">PLAYER ONE TURN</p>
-      <p id="scoreOne"></p>
-    </div>
-    <h1 id="roundDisplay">Round 1</h1>
-    <div class="score-display" id="playerTwp">
-      <p id="tokenTwo">PLAYER TWO TURN</p>
-      <p id="scoreTwo"></p>
-    </div>
+  <div class="player-one-section" id="playerOne">
+    <p id="tokenOne">PLAYER ONE TURN</p>
+    <p id="scoreOne"></p>
   </div>
   <div class="game-display">
+    <div id="roundDisplay">
+      <img id="roundStatus" src="round1.png" alt="round 1"/>
+    </div>  
     <div class="game-board" id="gameBoard">
       <box class="square-one" id="squareOne"></box>
       <box class="square-two" id="squareTwo"></box>
@@ -27,6 +23,10 @@
       <box class="square-eight" id="squareEight"></box>
       <box class="square-nine" id="squareNine"></box>
     </div>
+  </div>
+  <div class="player-two-section" id="playerTwo">
+    <p id="tokenTwo">PLAYER TWO TURN</p>
+    <p id="scoreTwo"></p>
   </div>
 </body>
 <script src="game.js"></script> 
