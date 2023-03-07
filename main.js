@@ -1,10 +1,11 @@
 //QUERYSELECTORS//
 var playerOneToken = document.querySelector('#tokenOne')
 var playerTwoToken = document.querySelector('#tokenTwo')
-var playerOneScore = document.querySelector('#scoreOne')
-var playerTwoScore = document.querySelector('#scoreTwo')
+var winCountOne = document.querySelector('#winCountOne')
+var winCountTwo = document.querySelector('#winCountTwo')
 
 var roundDisplay = document.querySelector('#roundDisplay')
+var turnDisplay = document.querySelector('#turnDisplay')
 
 var squareOne = document.querySelector('#squareOne')
 var squareTwo = document.querySelector('#squareTwo')
@@ -22,6 +23,7 @@ var newGame = new Game()
 var playerOne = newGame.playerOne
 var playerTwo = newGame.playerTwo
 var currentPlayer = 'playerOne'
+var currentToken = newGame[currentPlayer].token
 
 //EVENTLISTENERS//
 squareOne.addEventListener('click', playerTurn)
@@ -39,11 +41,10 @@ squareNine.addEventListener('click', playerTurn)
 function changeTurn() {
   if (newGame.playerTwoTurn === true) {
     currentPlayer = 'playerTwo'
-    // playerTwoToken.classList.add('player-one-turn-true')
+    turnDisplay.innerHTML = '<div id="turnDisplay"><img id="turnStatus" src="playertwoturn2.png" alt="player two turn"/></div>'
   } else if (newGame.playerOneTurn === true) {
     currentPlayer = 'playerOne'
-    // playerTwoToken.classList.remove('player-one-turn-true')
-    // playerTwoToken.classList.add('player-one-turn-false')
+    turnDisplay.innerHTML = '<div id="turnDisplay"><img id="turnStatus" src="playeroneturn2.png" alt="player one turn"/></div>'
   }
 }
 
@@ -105,15 +106,14 @@ function newBoard() {
   squareNine.innerText = ''
   squareNine.className = ''
   squareNine.classList.add('square-nine')
-  // turnDisplay.innerText = `Round ${newGame.currentRound}`
 }
 
 function displayWinner() {
   if (newGame.currentWin === 'playerOne'){
-    roundDisplay.innerHTML = `<img id="roundStatus" src="player1winss.png" alt="round 2"/>`
+    roundDisplay.innerHTML = `<img id="roundStatus" src="player1winss.png" alt="Player One Wins!"/>`
   setTimeout(newBoard,1000)
 } else if (newGame.currentWin === 'playerTwo') {
-  roundDisplay.innerHTML = `<img id="roundStatus" src="player2winss.png" alt="round 2"/>`
+  roundDisplay.innerHTML = `<img id="roundStatus" src="player2winss.png" alt="Player Two Wins!"/>`
   setTimeout(newBoard,1000)
 }
 }
@@ -121,16 +121,40 @@ function displayWinner() {
 function checkDraw() {
   if (newGame.draw === true) {
     turnDisplay.innerText = `IT'S A DRAW! SORRY!`
+    //UPDATE THIS//
     setTimeout(newBoard,1000)
   }
 }
 
+function playerOneScoreDisplay() {
+  if (newGame.playerOne.wins === 1) {
+    winCountOne.src = 'one.png'
+    winCountOne.alt = 'one'
+  } else if (newGame.playerOne.wins === 2) {
+    winCountOne.src = 'two.png' 
+    winCountOne.alt = 'two'
+  } else if (newGame.playerOne.wins === 3) {
+    winCountOne.src = 'three.png'
+    winCountOne.alt = 'four.png'
+}
+}
+
+function playerTwoScoreDislay() {
+  if (newGame.playerTwo.wins === 1) {
+    winCounTwo.src = 'one.png'
+    winCountTwo.alt = 'one'
+  } else if (newGame.playerOne.wins === 2) {
+    winCountTwo.src = 'two.png' 
+    winCountTwo.alt = 'two'
+  } else if (newGame.playerOne.wins === 3) {
+    winCountTwo.src = 'three.png'
+    winCountTwo.alt = 'four.png'
+}
+}
+
 function displayScore() {
-  if (newGame.playerOne.wins > 0) {
-    playerOneScore.innerText = `WINS: ${newGame.playerOne.wins}`
-  }if (newGame.playerTwo.wins > 0) {
-    playerTwoScore.innerText = `WINS: ${newGame.playerTwo.wins}`
-  }
+playerOneScoreDisplay()
+playerTwoScoreDislay()
 }
 
 function displayWin() {
@@ -142,6 +166,14 @@ function displayWin() {
     displayWinner()
   }
 }
+
+// function whichToken(event) {
+//   if (newGame.playerOneTurn === true) {
+//     event.target.innerHTML =  `<img src="${newGame.playerOne.token}" class="token"/>`
+//   } else if (newGame.playerTwoTurn === true) {
+//     event.target.innerHTML =  `<img src="${newGame.playerTwo.token}" class="token"/>`
+// }
+// }
 
 function playerTurn(event) {
   if (!event.target.innerText) {
@@ -166,12 +198,11 @@ function playerTurn(event) {
         event.target.classList.add('active-color13579')
       }  
     } 
-  // squareChange()
-  event.target.innerText = newGame[currentPlayer].token
+    console.log(event.target.innerHTML)
+  event.target.innerHTML =  `<img src="${currentToken}" class="token"/>`
   newGame.updateBoard(event)
   displayWin()
   changeTurn()
   checkDraw()
 }
 }
-

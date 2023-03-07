@@ -3,8 +3,8 @@ class Game {
     this.currentRound = 1
     this.playerOneTurn = true
     this.playerTwoTurn = false
-    this.playerOne = new Player(1, "x")
-    this.playerTwo = new Player(2, "o")
+    this.playerOne = new Player(1, './cartoken.png')
+    this.playerTwo = new Player(2, './cartoken2.png')
     this.squareOne = undefined
     this.squareTwo = undefined
     this.squareThree = undefined
