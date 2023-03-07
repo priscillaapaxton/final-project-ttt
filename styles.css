@@ -17,6 +17,28 @@ body {
   margin: 0;
 }
 
+.token-display {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25%;
+  align-items: center;
+  padding-top: 15%;
+}
+
+.player-token {
+  height: 50px
+}
+
+.player-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  padding-top: 18%;
+  width: 40%;
+}
+
 .game-display {
   display: flex;
   flex-direction: column;
@@ -51,14 +73,6 @@ box {
   transition: all 750ms;
 }
 
-.player-section {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-  padding-top: 18%;
-  width: 40%;
-}
 
 .square-one {
   border-left: none;

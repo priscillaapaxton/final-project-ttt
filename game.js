@@ -1,10 +1,9 @@
 class Game {
   constructor() {
     this.currentRound = 1
-    this.playerOneTurn = true
-    this.playerTwoTurn = false
-    this.playerOne = new Player(1, './cartoken.png')
-    this.playerTwo = new Player(2, './cartoken2.png')
+    this.playingNow = 'playerOne'
+    this.playerOne = new Player(1, './cartoken2.png')
+    this.playerTwo = new Player(2, './cartoken.png')
     this.squareOne = undefined
     this.squareTwo = undefined
     this.squareThree = undefined
@@ -26,8 +25,6 @@ class Game {
   }
   newGame() {
     this.currentRound = 1
-    this.playerOneTurn = true
-    this.playerTwoTurn = false
     this.playerOne = new Player(1, './cartoken.png')
     this.playerTwo = new Player(2, './cartoken2.png')
     this.squareOne = undefined
@@ -95,13 +92,11 @@ class Game {
   }
 }
 switchTurn() {
-  if (this.playerOneTurn) {
-    this.playerTwoTurn = true 
-    this.playerOneTurn = false
-  } else if (this.playerTwoTurn) {
-    this.playerOneTurn = true
-    this.playerTwoTurn = false
+  if (this.playingNow === 'playerOne') {
+    this.playingNow = 'playerTwo'
+  } else if (this.playingNow === 'playerTwo') {
+    this.playingNow = 'playerOne'
+    }
   }
-}
 }
 

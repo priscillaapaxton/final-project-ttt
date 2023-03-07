@@ -22,7 +22,7 @@ var entireBoard = document.querySelector('#gameBoard')
 var newGame = new Game()
 var playerOne = newGame.playerOne
 var playerTwo = newGame.playerTwo
-var currentPlayer = 'playerOne'
+var currentPlayer = newGame.playingNow
 
 //EVENT LISTENERS//
 squareOne.addEventListener('click', playerTurn)
@@ -37,19 +37,19 @@ squareNine.addEventListener('click', playerTurn)
 
 //FUNCTIONS//
 
-function changeTurn() {
-  if (newGame.playerTwoTurn === true) {
+function changeTurn() {//CHECK THIS??
+  if (newGame.playingNow === 'playerTwo') {
     currentPlayer = 'playerTwo' 
   } 
-  else if (newGame.playerOneTurn === true) 
+  else if (newGame.playingNow === 'playerOne') 
   currentPlayer = 'playerOne'
   }
 
 function changeToken() {
-  if (newGame.playerTwoTurn === true) {
+  if (newGame.playingNow === 'playerTwo') {
     turnDisplay.innerHTML = `<img id="turnStatus" src="./playertwoturn2.png" alt="player one turn"/>` 
   } 
-  else if (newGame.playerOneTurn === true) 
+  else if (newGame.playingNow === 'playerOne') 
   turnDisplay.innerHTML = `<img id="turnStatus" src="./playeroneturn2.png" alt="player one turn"/>`
   }
 
@@ -72,8 +72,9 @@ function displayRound() {
   } else if (newGame.playerOne.wins === 3 || newGame.playerTwo.wins === 3) {
     roundDisplay.innerHTML = `<img id="roundStatus" src="./gameover.png" alt="game over"/>
     <div id="turnDisplay"></div>`
-    setTimeout(changeTurn, 1000)
-    setTimeout(changeToken, 1000)
+    setTimeout(changeTurn, 3000)
+    setTimeout(changeToken, 3000)
+    setTimeout(endGame, 3000)
   }
 }
 
@@ -84,7 +85,7 @@ function endGame() {
     roundDisplay.innerHTML = `<img id="roundStatus" src="./round3.png" alt="round 3"/> `
   }
   newGame.newGame()
-  currentPlayer = 'playerOne'
+  currentPlayer = 'playerOne'//CHANGE THIS?
   roundDisplay.innerHTML = `<img id="roundStatus" src="./round1.png" alt="round 1"/>
     <div id="turnDisplay"></div>`
   turnDisplay.innerHTML = `<img id="turnStatus" src="./playeroneturn2.png" alt="player one turn"/>`
@@ -95,30 +96,39 @@ function endGame() {
   squareOne.innerText = ''
   squareOne.className = ''
   squareOne.classList.add('square-one')
+  squareOne.addEventListener('click', playerTurn)
   squareTwo.innerText = ''
   squareTwo.className = ''
   squareTwo.classList.add('square-two')
+  squareTwo.addEventListener('click', playerTurn)
   squareThree.innerText = ''
   squareThree.className = ''
   squareThree.classList.add('square-three')
+  squareThree.addEventListener('click', playerTurn)
   squareFour.innerText = ''
   squareFour.className = ''
   squareFour.classList.add('square-four')
+  squareFour.addEventListener('click', playerTurn)
   squareFive.innerText = ''
   squareFive.className = ''
   squareFive.classList.add('square-five')
+  squareFive.addEventListener('click', playerTurn)
   squareSix.innerText = ''
   squareSix.className = ''
   squareSix.classList.add('square-six')
+  squareSix.addEventListener('click', playerTurn)
   squareSeven.innerText = ''
   squareSeven.className = ''
   squareSeven.classList.add('square-seven')
+  squareSeven.addEventListener('click', playerTurn)
   squareEight.innerText = ''
   squareEight.className = ''
   squareEight.classList.add('square-eight')
+  squareEight.addEventListener('click', playerTurn)
   squareNine.innerText = ''
   squareNine.className = ''
   squareNine.classList.add('square-nine')
+  squareNine.addEventListener('click', playerTurn)
 }
 
 function newBoard() {
@@ -132,30 +142,39 @@ function newBoard() {
   squareOne.innerText = ''
   squareOne.className = ''
   squareOne.classList.add('square-one')
+  squareOne.addEventListener('click', playerTurn)
   squareTwo.innerText = ''
   squareTwo.className = ''
   squareTwo.classList.add('square-two')
+  squareTwo.addEventListener('click', playerTurn)
   squareThree.innerText = ''
   squareThree.className = ''
   squareThree.classList.add('square-three')
+  squareThree.addEventListener('click', playerTurn)
   squareFour.innerText = ''
   squareFour.className = ''
   squareFour.classList.add('square-four')
+  squareFour.addEventListener('click', playerTurn)
   squareFive.innerText = ''
   squareFive.className = ''
   squareFive.classList.add('square-five')
+  squareFive.addEventListener('click', playerTurn)
   squareSix.innerText = ''
   squareSix.className = ''
   squareSix.classList.add('square-six')
+  squareSix.addEventListener('click', playerTurn)
   squareSeven.innerText = ''
   squareSeven.className = ''
   squareSeven.classList.add('square-seven')
+  squareSeven.addEventListener('click', playerTurn)
   squareEight.innerText = ''
   squareEight.className = ''
   squareEight.classList.add('square-eight')
+  squareEight.addEventListener('click', playerTurn)
   squareNine.innerText = ''
   squareNine.className = ''
   squareNine.classList.add('square-nine')
+  squareNine.addEventListener('click', playerTurn)
 }
 
 function displayWinner() {
@@ -226,33 +245,40 @@ function displayWin() {
 }
 
 function playerTurn(event) {
-  if (!event.target.innerText) {
-    if (!event.target.innerText) {
+    if (!event.target.innerHTML) {
       if (event.target.id === 'squareOne') {
         event.target.classList.add('active-color13579')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareTwo') {
         event.target.classList.add('active-color2468')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareThree') {
         event.target.classList.add('active-color13579')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareFour') {
         event.target.classList.add('active-color2468')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareFive') {
         event.target.classList.add('active-color13579')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareSix') {
         event.target.classList.add('active-color2468')
+        event.target.removeEventListener('click', playerTurn)
       }if (event.target.id === 'squareSeven') {
         event.target.classList.add('active-color13579')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareEight') {
         event.target.classList.add('active-color2468')
+        event.target.removeEventListener('click', playerTurn)
       } if (event.target.id === 'squareNine') {
         event.target.classList.add('active-color13579')
+        event.target.removeEventListener('click', playerTurn)
       }  
+    changeTurn()
+    event.target.innerHTML =  `<img src="${newGame[currentPlayer].token}" class="token"/>`
+    newGame.updateBoard(event)
+    displayWin()
+    checkDraw()
+    changeToken()
     } 
-  event.target.innerHTML =  `<img src="${newGame[currentPlayer].token}" class="token"/>`
-  newGame.updateBoard(event)
-  displayWin()
-  checkDraw()
-  changeTurn()
-  changeToken()
-  }
 }
