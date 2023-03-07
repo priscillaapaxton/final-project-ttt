@@ -2,8 +2,10 @@ class Game {
   constructor() {
     this.currentRound = 1
     this.playingNow = 'playerOne'
-    this.playerOne = new Player(1, './cartoken2.png')
-    this.playerTwo = new Player(2, './cartoken.png')
+    this.currentWin = undefined
+    this.draw = false
+    this.playerOne = new Player(1, './assets/cartoken2.png')
+    this.playerTwo = new Player(2, './assets/cartoken.png')
     this.squareOne = undefined
     this.squareTwo = undefined
     this.squareThree = undefined
@@ -13,31 +15,20 @@ class Game {
     this.squareSeven = undefined
     this.squareEight = undefined
     this.squareNine = undefined
-    this.currentWin = undefined
-    this.draw = false
   }
   updateBoard(event) {
     if (this[event.target.id] === undefined) {
-      this[event.target.id] = currentPlayer
-      this.checkWinStatus(currentPlayer)
+      this[event.target.id] = this.playingNow
+      this.checkWinStatus(this.playingNow)
     }
     this.switchTurn()
   }
   newGame() {
     this.currentRound = 1
-    this.playerOne = new Player(1, './cartoken.png')
-    this.playerTwo = new Player(2, './cartoken2.png')
-    this.squareOne = undefined
-    this.squareTwo = undefined
-    this.squareThree = undefined
-    this.squareFour = undefined
-    this.squareFive = undefined
-    this.squareSix = undefined
-    this.squareSeven = undefined
-    this.squareEight = undefined
-    this.squareNine = undefined
-    this.currentWin = undefined
-    this.draw = false
+    this.playingNow = 'playerOne'
+    this.playerOne = new Player(1, './assets/cartoken2.png')
+    this.playerTwo = new Player(2, './assets/cartoken.png')
+    this.resetBoard()
   }
   resetBoard() {
     this.squareOne = undefined
@@ -49,43 +40,40 @@ class Game {
     this.squareSeven = undefined
     this.squareEight = undefined
     this.squareNine = undefined
-    this.currentWin = undefined
-    this.currentWin = undefined
     this.draw = false
   }
- checkWinStatus(currentPlayer) {
-  if (this.squareOne === currentPlayer && this.squareTwo === currentPlayer && this.squareThree === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+ checkWinStatus() {
+  if (this.squareOne === this.playingNow && this.squareTwo === this.playingNow && this.squareThree === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-    console.log(`${currentPlayer} won`)
-  } else if (this.squareFour === currentPlayer && this.squareFive === currentPlayer && this.squareSix === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareFour === this.playingNow && this.squareFive === this.playingNow && this.squareSix === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareSeven === currentPlayer && this.squareEight === currentPlayer && this.squareNine === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareSeven === this.playingNow && this.squareEight === this.playingNow && this.squareNine === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareOne === currentPlayer && this.squareFour === currentPlayer && this.squareSeven === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareOne === this.playingNow && this.squareFour === this.playingNow && this.squareSeven === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareTwo === currentPlayer && this.squareFive === currentPlayer && this.squareEight === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareTwo === this.playingNow && this.squareFive === this.playingNow && this.squareEight === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareThree === currentPlayer && this.squareSix === currentPlayer && this.squareNine === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareThree === this.playingNow && this.squareSix === this.playingNow && this.squareNine === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareOne === currentPlayer && this.squareFive === currentPlayer && this.squareNine === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareOne === this.playingNow && this.squareFive === this.playingNow && this.squareNine === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
-  } else if (this.squareThree === currentPlayer && this.squareFive === currentPlayer && this.squareSeven === currentPlayer) {
-    this.currentWin = currentPlayer
-    this[currentPlayer].wins += 1
+  } else if (this.squareThree === this.playingNow && this.squareFive === this.playingNow && this.squareSeven === this.playingNow) {
+    this.currentWin = this.playingNow
+    this[this.playingNow].wins += 1
     this.currentRound += 1
   } else if (this.squareOne && this.squareTwo && this.squareThree && this.squareFour && this.squareFive && this.squareSix && this.squareSeven && this.squareEight && this.squareNine) {
     this.draw = true
