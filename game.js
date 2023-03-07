@@ -3,8 +3,8 @@ class Game {
     this.currentRound = 1
     this.playerOneTurn = true
     this.playerTwoTurn = false
-    this.playerOne = new Player(1, "x")
-    this.playerTwo = new Player(2, "o")
+    this.playerOne = new Player(1, './cartoken.png')
+    this.playerTwo = new Player(2, './cartoken2.png')
     this.squareOne = undefined
     this.squareTwo = undefined
     this.squareThree = undefined
@@ -20,7 +20,6 @@ class Game {
   updateBoard(event) {
     if (this[event.target.id] === undefined) {
       this[event.target.id] = currentPlayer
-      // console.log(`${event.target.id} was clicked`)
       this.checkWinStatus(currentPlayer)
     }
     this.switchTurn()
@@ -38,7 +37,6 @@ class Game {
     this.currentWin = undefined
     this.currentWin = undefined
     this.draw = false
-    console.log('new win set to undefined')
   }
  checkWinStatus(currentPlayer) {
   if (this.squareOne === currentPlayer && this.squareTwo === currentPlayer && this.squareThree === currentPlayer) {
@@ -82,17 +80,10 @@ switchTurn() {
   if (this.playerOneTurn) {
     this.playerTwoTurn = true 
     this.playerOneTurn = false
-    // console.log('player 2 turn')
   } else if (this.playerTwoTurn) {
     this.playerOneTurn = true
     this.playerTwoTurn = false
-    // console.log('player 1 turn')
   }
 }
-  gameScoreCheck(playerOne, playerTwo) {
-    if (playerOne.wins === 3 || playerTwo.wins === 3) {
-      console.log('Game Over')
-    }
-  }
 }
 
