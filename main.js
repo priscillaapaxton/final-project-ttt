@@ -1,98 +1,69 @@
-//QUERY SELECTORS//
-var playerOneToken = document.querySelector('#tokenOne')
-var playerTwoToken = document.querySelector('#tokenTwo')
-var winCountOne = document.querySelector('#winCountOne')
-var winCountTwo = document.querySelector('#winCountTwo')
+// ******* QUERY SELECTORS ********
+var playerOneToken = document.querySelector('#tokenOne');
+var playerTwoToken = document.querySelector('#tokenTwo');
+var winCountOne = document.querySelector('#winCountOne');
+var winCountTwo = document.querySelector('#winCountTwo');
 
-var roundDisplay = document.querySelector('#roundDisplay')
-var turnDisplay = document.querySelector('#turnDisplay')
+var roundControl = document.querySelector('.roundControl');
+var roundDisplay = document.querySelector('#roundDisplay');
+var turnDisplay = document.querySelector('#turnDisplay');
+var turnStatus = document.querySelector('#turnStatus');
 
-var squareOne = document.querySelector('#squareOne')
-var squareTwo = document.querySelector('#squareTwo')
-var squareThree = document.querySelector('#squareThree')
-var squareFour = document.querySelector('#squareFour')
-var squareFive = document.querySelector('#squareFive')
-var squareSix = document.querySelector('#squareSix')
-var squareSeven = document.querySelector('#squareSeven')
-var squareEight = document.querySelector('#squareEight')
-var squareNine = document.querySelector('#squareNine')
-var entireBoard = document.querySelector('#gameBoard')
+var squareOne = document.querySelector('#squareOne');
+var squareTwo = document.querySelector('#squareTwo');
+var squareThree = document.querySelector('#squareThree');
+var squareFour = document.querySelector('#squareFour');
+var squareFive = document.querySelector('#squareFive');
+var squareSix = document.querySelector('#squareSix');
+var squareSeven = document.querySelector('#squareSeven');
+var squareEight = document.querySelector('#squareEight');
+var squareNine = document.querySelector('#squareNine');
+var entireBoard = document.querySelector('#gameBoard');
 
-//DATA MODEL//
-var newGame = new Game()
-var playerOne = newGame.playerOne
-var playerTwo = newGame.playerTwo
-var currentPlayer = newGame.playingNow
+// ******* DATA MODEL ******* 
+var newGame = new Game();
+var playerOne = newGame.playerOne;
+var playerTwo = newGame.playerTwo;
 
-//EVENT LISTENERS//
-squareOne.addEventListener('click', playerTurn)
-squareTwo.addEventListener('click', playerTurn)
-squareThree.addEventListener('click', playerTurn)
-squareFour.addEventListener('click', playerTurn)
-squareFive.addEventListener('click', playerTurn)
-squareSix.addEventListener('click', playerTurn)
-squareSeven.addEventListener('click', playerTurn)
-squareEight.addEventListener('click', playerTurn)
-squareNine.addEventListener('click', playerTurn)
+// ******* EVENT LISTENERS ******* 
+squareOne.addEventListener('click', playerTurn);
+squareTwo.addEventListener('click', playerTurn);
+squareThree.addEventListener('click', playerTurn);
+squareFour.addEventListener('click', playerTurn);
+squareFive.addEventListener('click', playerTurn);
+squareSix.addEventListener('click', playerTurn);
+squareSeven.addEventListener('click', playerTurn);
+squareEight.addEventListener('click', playerTurn);
+squareNine.addEventListener('click', playerTurn);
 
-//FUNCTIONS//
-
-function changeTurn() {//CHECK THIS??
-  if (newGame.playingNow === 'playerTwo') {
-    currentPlayer = 'playerTwo' 
-  } 
-  else if (newGame.playingNow === 'playerOne') 
-  currentPlayer = 'playerOne'
-  }
-
+// ******* EVENT HANDLERS
 function changeToken() {
   if (newGame.playingNow === 'playerTwo') {
-    turnDisplay.innerHTML = `<img id="turnStatus" src="./playertwoturn2.png" alt="player one turn"/>` 
+    turnDisplay.innerHTML = `<img id="turnStatus" src="./assets/playertwoturn2.png" alt="player one turn"/>` 
   } 
   else if (newGame.playingNow === 'playerOne') 
-  turnDisplay.innerHTML = `<img id="turnStatus" src="./playeroneturn2.png" alt="player one turn"/>`
+  turnDisplay.innerHTML = `<img id="turnStatus" src="./assets/playeroneturn2.png" alt="player one turn"/>`
   }
 
 function displayRound() {
   if (newGame.currentRound === 1) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./round1.png" alt="round 1"/>
-    <div id="turnDisplay"></div>`
-    setTimeout(changeTurn, 1000)
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/round1.png" alt="round 1"/>`
     setTimeout(changeToken, 1000)
   } else if (newGame.currentRound === 2) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./round2.png" alt="round 2"/>
-    <div id="turnDisplay"></div>`
-    setTimeout(changeTurn, 1000)
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/round2.png" alt="round 2"/>`
     setTimeout(changeToken, 1000)
   } else if (newGame.currentRound === 3) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./round3.png" alt="round 3"/>
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/round3.png" alt="round 3"/>
     <div id="turnDisplay"></div>`
-    setTimeout(changeTurn, 1000)
     setTimeout(changeToken, 1000)
   } else if (newGame.playerOne.wins === 3 || newGame.playerTwo.wins === 3) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./gameover.png" alt="game over"/>
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/gameover.png" alt="game over"/>
     <div id="turnDisplay"></div>`
-    setTimeout(changeTurn, 3000)
     setTimeout(changeToken, 3000)
     setTimeout(endGame, 3000)
   }
 }
-
-function endGame() {
-  if (newGame.playerOne.wins === 3) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./round3.png" alt="round 3"/> `
-  } else if (newGame.playerTwo.wins === 3) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./round3.png" alt="round 3"/> `
-  }
-  newGame.newGame()
-  currentPlayer = 'playerOne'//CHANGE THIS?
-  roundDisplay.innerHTML = `<img id="roundStatus" src="./round1.png" alt="round 1"/>
-    <div id="turnDisplay"></div>`
-  turnDisplay.innerHTML = `<img id="turnStatus" src="./playeroneturn2.png" alt="player one turn"/>`
-  winCountOne.src = './zero.png' 
-  winCountOne.alt = 'zero'
-  winCountTwo.src = './zero.png' 
-  winCountTwo.alt = 'zero'
+function domBoardReset() {
   squareOne.innerText = ''
   squareOne.className = ''
   squareOne.classList.add('square-one')
@@ -129,72 +100,53 @@ function endGame() {
   squareNine.className = ''
   squareNine.classList.add('square-nine')
   squareNine.addEventListener('click', playerTurn)
+  }
+
+function endGame() {
+  if (newGame.playerOne.wins === 3) {
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/gameover.png" alt="game over"/> `
+  } else if (newGame.playerTwo.wins === 3) {
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/gameover" alt="game over"/> `
+  }
+  newGame.newGame()
+  roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/round1.png" alt="round 1"/>
+    <div id="turnDisplay"></div>`
+  turnDisplay.innerHTML = `<img id="turnStatus" src="./assets/playeroneturn2.png" alt="player one turn"/>`
+  winCountOne.src = './assets/zero.png' 
+  winCountOne.alt = 'zero'
+  winCountTwo.src = './assets/zero.png' 
+  winCountTwo.alt = 'zero'
+  domBoardReset()
 }
+
 
 function newBoard() {
   displayRound()
   if (newGame.currentWin === 'playerOne') {  
-    currentPlayer = 'playerTwo'
+    turnDisplay.innerHTML = `<img id="turnStatus" src="./assets/playertwoturn2.png" alt="player one turn"/>`
   } else if (newGame.currentWin === 'playerTwo') {
-    currentPlayer = 'playerOne'
+    turnDisplay.innerHTML = `<img id="turnStatus" src="./assets/playeroneturn2.png" alt="player one turn"/>`
   }
   newGame.resetBoard()
-  squareOne.innerText = ''
-  squareOne.className = ''
-  squareOne.classList.add('square-one')
-  squareOne.addEventListener('click', playerTurn)
-  squareTwo.innerText = ''
-  squareTwo.className = ''
-  squareTwo.classList.add('square-two')
-  squareTwo.addEventListener('click', playerTurn)
-  squareThree.innerText = ''
-  squareThree.className = ''
-  squareThree.classList.add('square-three')
-  squareThree.addEventListener('click', playerTurn)
-  squareFour.innerText = ''
-  squareFour.className = ''
-  squareFour.classList.add('square-four')
-  squareFour.addEventListener('click', playerTurn)
-  squareFive.innerText = ''
-  squareFive.className = ''
-  squareFive.classList.add('square-five')
-  squareFive.addEventListener('click', playerTurn)
-  squareSix.innerText = ''
-  squareSix.className = ''
-  squareSix.classList.add('square-six')
-  squareSix.addEventListener('click', playerTurn)
-  squareSeven.innerText = ''
-  squareSeven.className = ''
-  squareSeven.classList.add('square-seven')
-  squareSeven.addEventListener('click', playerTurn)
-  squareEight.innerText = ''
-  squareEight.className = ''
-  squareEight.classList.add('square-eight')
-  squareEight.addEventListener('click', playerTurn)
-  squareNine.innerText = ''
-  squareNine.className = ''
-  squareNine.classList.add('square-nine')
-  squareNine.addEventListener('click', playerTurn)
+  domBoardReset()
 }
 
 function displayWinner() {
   if (newGame.currentWin === 'playerOne') {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./player1winss.png" alt="Player One Wins!"/>
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/player1winss.png" alt="Player One Wins!"/>
     `
   setTimeout(newBoard,1000)
-  changeTurn()
   changeToken()
 } else if (newGame.currentWin === 'playerTwo') {
-  roundDisplay.innerHTML = `<img id="roundStatus" src="./player2winss.png" alt="Player Two Wins!"/>`
+  roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/player2winss.png" alt="Player Two Wins!"/>`
   setTimeout(newBoard,1000)
-  changeTurn()
   changeToken()
 }
 }
 
 function checkDraw() {
   if (newGame.draw === true) {
-    roundDisplay.innerHTML = `<img id="roundStatus" src="./draw.png" alt="Draw!"/>`
+    roundDisplay.innerHTML = `<img id="roundStatus" src="./assets/draw.png" alt="Draw!"/>`
     setTimeout(newBoard,1000)
     changeTurn()
     changeToken()
@@ -203,28 +155,28 @@ function checkDraw() {
 
 function playerOneScoreDisplay() {
   if (newGame.playerOne.wins === 1) {
-    winCountOne.src = './one.png'
+    winCountOne.src = './assets/one.png'
     winCountOne.alt = 'one'
   } else if (newGame.playerOne.wins === 2) {
-    winCountOne.src = './two.png' 
+    winCountOne.src = './assets/two.png' 
     winCountOne.alt = 'two'
   } else if (newGame.playerOne.wins === 3) {
-    winCountOne.src = './three.png'
-    winCountOne.alt = 'three.png'
+    winCountOne.src = './assets/three.png'
+    winCountOne.alt = 'three'
     setTimeout(endGame, 3000)
 }
 }
 
 function playerTwoScoreDislay() {
   if (newGame.playerTwo.wins === 1) {
-    winCountTwo.src = './one.png'
+    winCountTwo.src = './assets/one.png'
     winCountTwo.alt = 'one'
   } else if (newGame.playerTwo.wins === 2) {
-    winCountTwo.src = './two.png' 
+    winCountTwo.src = './assets/two.png' 
     winCountTwo.alt = 'two'
   } else if (newGame.playerTwo.wins === 3) {
-    winCountTwo.src = './three.png'
-    winCountTwo.alt = 'three.png'
+    winCountTwo.src = './assets/three.png'
+    winCountTwo.alt = 'three'
     setTimeout(endGame, 3000)
 }
 }
@@ -238,9 +190,11 @@ function displayWin() {
   if (newGame.currentWin === 'playerOne') {
     displayScore()
     displayWinner()
+    newGame.currentWin = undefined
   } else if (newGame.currentWin === 'playerTwo') {
     displayScore()
     displayWinner()
+    newGame.currentWin = undefined
   }
 }
 
@@ -274,8 +228,7 @@ function playerTurn(event) {
         event.target.classList.add('active-color13579')
         event.target.removeEventListener('click', playerTurn)
       }  
-    changeTurn()
-    event.target.innerHTML =  `<img src="${newGame[currentPlayer].token}" class="token"/>`
+    event.target.innerHTML =  `<img src="${newGame[newGame.playingNow].token}" class="token"/>`
     newGame.updateBoard(event)
     displayWin()
     checkDraw()
