@@ -119,10 +119,6 @@ box {
   border-radius: 0px 0px 20px 0px;
 }
 
-.hidden {
-  display: none!important;
-}
-
 .active-color13579 {
   background: rgb(255, 153, 0, .3)
 }
