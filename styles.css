@@ -17,19 +17,6 @@ body {
   margin: 0;
 }
 
-/* .game-display {
-  display: flex;
-  justify-content: space-around;
-  width: 100%
-} */
-
-/* .score-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
 .game-display {
   display: flex;
   flex-direction: column;
@@ -54,27 +41,6 @@ body {
   width: 375px;
   height: 375px;
 }
-
-/* .player-one-turn-true {
-  font-family: monospace;
-  font-size: 30px;
-  color: #e6ffe6;
-    text-shadow:
-      0 0 7px #e6ffe6,
-      0 0 10px #e6ffe6,
-      0 0 21px #e6ffe6,
-      0 0 42px #00e600,
-      0 0 82px #00e600,
-      0 0 92px #00e600,
-      0 0 102px #00e600,
-      0 0 151px #00e600;
-} */
-
-/* .player-one-turn-false {
-  font-family: monospace;
-  font-size: 30px;
-  color: #202f38
-} */
 
 box {
   display: flex;
