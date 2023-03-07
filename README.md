@@ -14,8 +14,7 @@ This game of Tic-Tac-Toe transports the user into a warm, new wave universe.
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
-![Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJiNTFkOGJiOTg4ZDFiZDdmYTVjY2Q1NjliYTZjN2NlNDE2NGUyYSZjdD1n/r9Tg30lZPtJ6mqnxeT/giphy.gif)
-
+![Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmZiM2M2NGUyODExN2Q2NWViZmU2ZDI3M2U5ZWU1ODQ2M2JmYzU1NSZjdD1n/sWQMlI1WzL58eldvQ0/giphy.gif)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
